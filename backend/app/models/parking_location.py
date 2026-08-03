@@ -13,6 +13,11 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base
 
+from typing import TYPE_CHECKING
+from sqlalchemy.orm import Mapped, relationship
+
+if TYPE_CHECKING:
+    from app.models.parking_floor import ParkingFloor
 
 class ParkingLocation(Base):
     __tablename__ = "parking_locations"
@@ -25,6 +30,11 @@ class ParkingLocation(Base):
         String(150),
         nullable=False,
         index=True,
+    )
+    
+    floors: Mapped[list["ParkingFloor"]] = relationship(
+    back_populates="location",
+    cascade="all, delete-orphan",
     )
 
     address: Mapped[str] = mapped_column(
