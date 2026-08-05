@@ -21,6 +21,10 @@ from app.db.base import Base
 if TYPE_CHECKING:
     from app.models.parking_location import ParkingLocation
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.parking_slot import ParkingSlot
 
 class ParkingFloor(Base):
     __tablename__ = "parking_floors"
@@ -78,3 +82,8 @@ class ParkingFloor(Base):
     location: Mapped["ParkingLocation"] = relationship(
         back_populates="floors",
     )
+    
+    slots: Mapped[list["ParkingSlot"]] = relationship(
+    back_populates="floor",
+    cascade="all, delete-orphan",
+)

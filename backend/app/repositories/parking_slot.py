@@ -88,3 +88,18 @@ def deactivate_slot(
     db.refresh(slot)
 
     return slot
+
+
+def get_slot_by_id_for_update(
+    db: Session,
+    slot_id: int,
+):
+    statement = (
+        select(ParkingSlot)
+        .where(
+            ParkingSlot.id == slot_id
+        )
+        .with_for_update()
+    )
+
+    return db.scalar(statement)

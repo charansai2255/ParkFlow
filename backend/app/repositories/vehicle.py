@@ -15,6 +15,17 @@ def get_vehicle_by_number(
     return db.scalar(statement)
 
 
+def get_vehicle_by_id(
+    db: Session,
+    vehicle_id: int,
+) -> Vehicle | None:
+    statement = select(Vehicle).where(
+        Vehicle.id == vehicle_id
+    )
+
+    return db.scalar(statement)
+
+
 def create_vehicle(
     db: Session,
     *,

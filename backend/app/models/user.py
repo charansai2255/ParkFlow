@@ -13,6 +13,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.models.vehicle import Vehicle
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.reservation import Reservation
+
 class UserRole(str, enum.Enum):
     USER = "USER"
     MANAGER = "MANAGER"
@@ -69,4 +74,9 @@ class User(Base):
         server_default=func.now(),
         onupdate=func.now(),
         nullable=False,
+    )
+    
+    reservations: Mapped[list["Reservation"]] = relationship(
+    back_populates="user",
+    cascade="all, delete-orphan",
     )

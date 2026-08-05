@@ -13,3 +13,12 @@ class SlotStatus(str, Enum):
     HELD = "HELD"
     RESERVED = "RESERVED"
     OCCUPIED = "OCCUPIED"
+
+
+class ReservationStatus(str, Enum):
+    PENDING = "PENDING"
+    CONFIRMED = "CONFIRMED"
+    CANCELLED = "CANCELLED"
+    CHECKED_IN = "CHECKED_IN"
+    COMPLETED = "COMPLETED"
+    NO_SHOW = "NO_SHOW"

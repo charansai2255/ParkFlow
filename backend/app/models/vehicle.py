@@ -11,7 +11,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.models.user import User
 
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from app.models.reservation import Reservation
+    
 class VehicleType(str, enum.Enum):
     CAR = "CAR"
     BIKE = "BIKE"
@@ -58,4 +62,9 @@ class Vehicle(Base):
 
     user: Mapped["User"] = relationship(
         back_populates="vehicles"
+    )
+    
+    reservations: Mapped[list["Reservation"]] = relationship(
+    back_populates="vehicle",
+    cascade="all, delete-orphan",
     )

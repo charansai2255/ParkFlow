@@ -22,6 +22,10 @@ from app.models.enums import SlotStatus, SlotType
 if TYPE_CHECKING:
     from app.models.parking_floor import ParkingFloor
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.reservation import Reservation
 
 class ParkingSlot(Base):
     __tablename__ = "parking_slots"
@@ -85,4 +89,9 @@ class ParkingSlot(Base):
 
     floor: Mapped["ParkingFloor"] = relationship(
         back_populates="slots",
+    )
+    
+    reservations: Mapped[list["Reservation"]] = relationship(
+    back_populates="slot",
+    cascade="all, delete-orphan",
     )
