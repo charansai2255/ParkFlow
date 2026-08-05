@@ -21,6 +21,10 @@ if TYPE_CHECKING:
     from app.models.vehicle import Vehicle
     from app.models.parking_slot import ParkingSlot
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.parking_session import ParkingSession
 
 class Reservation(Base):
     __tablename__ = "reservations"
@@ -95,4 +99,10 @@ class Reservation(Base):
 
     slot: Mapped["ParkingSlot"] = relationship(
         back_populates="reservations",
+    )
+    
+    parking_session: Mapped["ParkingSession | None"] = relationship(
+    back_populates="reservation",
+    uselist=False,
+    cascade="all, delete-orphan",
     )

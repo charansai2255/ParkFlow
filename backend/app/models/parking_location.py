@@ -9,12 +9,11 @@ from sqlalchemy import (
     Time,
     func,
 )
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 
 from typing import TYPE_CHECKING
-from sqlalchemy.orm import Mapped, relationship
 
 if TYPE_CHECKING:
     from app.models.parking_floor import ParkingFloor

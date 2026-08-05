@@ -56,8 +56,7 @@ def list_user_vehicles(
         user_id,
     )
     
-class VehicleNotFoundError(Exception):
-    pass
+
 def get_user_vehicle(
     db: Session,
     *,
