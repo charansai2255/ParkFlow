@@ -20,6 +20,10 @@ from app.api.routes.dashboard import (
     router as dashboard_router,
 )
 
+from app.api.routes.websocket import (
+    router as websocket_router,
+)
+
 api_router = APIRouter(
     prefix="/api/v1",
 )
@@ -36,4 +40,7 @@ api_router.include_router(
 )
 api_router.include_router(
     dashboard_router
+)
+api_router.include_router(
+    websocket_router
 )
